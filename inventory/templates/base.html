@@ -1,0 +1,49 @@
+{% load i18n admin_urls %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ICT Inventory System, IOE</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</head>
+<body>
+<div class="alert alert-info" role="alert">
+    <a href="{% url 'index' %}" class="alert-link"><h1 style="text-align: center">ICT Inventory System, IOE</h1></a>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="list-group mt-2">
+            <a class="list-group-item list-group-item-action active">
+                <h4>Floor</h4>
+            </a>
+            {% block floor_block %}
+                <a href="{% url 'index' %}" class="list-group-item list-group-item-action">All</a>
+                {% for room in floor_values %}
+                    <a href="{% url 'floor_view' room.floor %}"
+                       class="list-group-item list-group-item-action">{{ room.floor }}</a>
+                {% endfor %}
+            {% endblock %}
+        </div>
+        <div class="list-group mt-2">
+            <a class="list-group-item list-group-item-action active">
+                <h4>Rooms</h4>
+            </a>
+            {% block room_block %}
+                {% for room in room_ids %}
+                    <a href="{% url 'room_view' room.id %}" class="list-group-item list-group-item-action">{{ room.id }}</a>
+                {% endfor %}
+            {% endblock %}
+        </div>
+    </div>
+    <div class="col-md-10">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{% extends 'index.html' %}
+{% load admin_urls %}
+{% block content %}
+    <div class="alert-success"><h4>Select any one!</h4></div>
+    <div class="list-group list-group-flush">
+        <a href="{% url computer_admin|admin_urlname:'changelist' %}?room__id__exact={{ room }}" class="list-group-item list-group-item-action">Computers</a>
+        <a href="{% url laptop_admin|admin_urlname:'changelist' %}?room__id__exact={{ room }}" class="list-group-item list-group-item-action">Laptops</a>
+        <a href="{% url printer_admin|admin_urlname:'changelist' %}?room__id__exact={{ room }}" class="list-group-item list-group-item-action">Printers</a>
+        <a href="{% url switch_admin|admin_urlname:'changelist' %}?room__id__exact={{ room }}" class="list-group-item list-group-item-action">Network
+            Switches</a>
+        <a href="{% url other_admin|admin_urlname:'changelist' %}?room__id__exact={{ room }}" class="list-group-item list-group-item-action">Other Items in
+            General</a>
+    </div>
+{% endblock %}
+
